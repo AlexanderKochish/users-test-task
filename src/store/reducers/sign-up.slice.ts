@@ -61,7 +61,7 @@ export const signUpAsyncThunk = createAsyncThunk<
 			},
 		)
 		location.reload()
-		location.replace('/success')
+		location.replace(`${import.meta.env.VITE_VERSEL_URL}success`)
 		return data
 	} catch (error) {
 		throw thunkApi.rejectWithValue(error)
