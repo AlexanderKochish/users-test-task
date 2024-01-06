@@ -8,9 +8,11 @@ import {
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { IRegisterForm } from '../../interfaces/interfaces'
 import Button from '../UI/Button'
+import { useNavigate } from 'react-router-dom'
 
 const Form: React.FC = () => {
 	const [fileName, setFileName] = useState<string>('')
+	const navigate = useNavigate()
 	const {
 		register,
 		handleSubmit,
@@ -25,6 +27,7 @@ const Form: React.FC = () => {
 	const createUser: SubmitHandler<IRegisterForm> = async (
 		data,
 	): Promise<void> => {
+		navigate('/success')
 		await dispatch(signUpAsyncThunk(data))
 	}
 
