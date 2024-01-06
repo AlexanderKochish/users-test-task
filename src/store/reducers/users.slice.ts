@@ -56,12 +56,12 @@ const usersSlice = createSlice({
 		builder.addCase(
 			usersAsyncThunk.fulfilled,
 			(state, { payload }: PayloadAction<any>) => {
-				state.users = [...payload.users, state.users]
+				state.status = 'successed'
+				state.users = [...state.users,...payload.users]
 				state.userData.totalPages = payload.total_pages
 				state.userData.totalUsers = payload.total_users
 				state.userData.count = payload.count
 				state.userData.page = payload.page
-				state.status = 'successed'
 			},
 		)
 		builder.addCase(
