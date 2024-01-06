@@ -15,7 +15,7 @@ const SuccessPage: React.FC = () => {
 					<h3 className='text-xl mb-10'>User successfully registered</h3>
 				</div>
 				<div>
-					<img src={successImage} alt='success_image' />
+					<img src={successImage} alt='success_image' loading='lazy'/>
 				</div>
 			</div>
 		</div>

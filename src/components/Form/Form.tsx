@@ -10,6 +10,7 @@ import { IRegisterForm } from '../../interfaces/interfaces'
 import Button from '../UI/Button'
 import { useNavigate } from 'react-router-dom'
 
+
 const Form: React.FC = () => {
 	const [fileName, setFileName] = useState<string>('')
 	const navigate = useNavigate()

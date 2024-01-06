@@ -56,8 +56,7 @@ const usersSlice = createSlice({
 		builder.addCase(
 			usersAsyncThunk.fulfilled,
 			(state, { payload }: PayloadAction<any>) => {
-				state.users = []
-				state.users = [...state.users, ...payload.users]
+				state.users = [...state.users, ...payload.users].sort(( a:any, b:any ) => b.registration_timestamp - a.registration_timestamp)
 				state.userData.totalPages = payload.total_pages
 				state.userData.totalUsers = payload.total_users
 				state.userData.count = payload.count
