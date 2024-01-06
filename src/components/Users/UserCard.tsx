@@ -13,6 +13,7 @@ const UserCard: React.FC<IUserCard> = ({ user }) => {
 					className='w-[70px] h-[70px] rounded-full'
 					src={photo}
 					alt='user-avatar'
+					loading='lazy'
 				/>
 			</div>
 			<ul className='flex flex-col items-center justify-center overflow-hidden w-full truncate'>
