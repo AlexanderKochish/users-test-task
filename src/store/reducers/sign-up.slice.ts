@@ -60,7 +60,6 @@ export const signUpAsyncThunk = createAsyncThunk<
 				},
 			},
 		)
-		location.reload()
 		return data
 	} catch (error) {
 		throw thunkApi.rejectWithValue(error)
