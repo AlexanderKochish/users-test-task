@@ -27,8 +27,8 @@ const Form: React.FC = () => {
 	const createUser: SubmitHandler<IRegisterForm> = async (
 		data,
 	): Promise<void> => {
-		navigate('/success')
 		await dispatch(signUpAsyncThunk(data))
+		navigate('/success')
 	}
 
 	return (

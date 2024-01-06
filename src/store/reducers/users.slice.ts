@@ -24,7 +24,7 @@ const initialState: IUserState = {
 
 export const usersAsyncThunk = createAsyncThunk<
 	any,
-	number,
+	any,
 	{ state: RootState }
 >('users/usersAsyncThunk', async (page, thunkApi): Promise<any> => {
 	const { userData } = thunkApi.getState().users
@@ -56,12 +56,8 @@ const usersSlice = createSlice({
 		builder.addCase(
 			usersAsyncThunk.fulfilled,
 			(state, { payload }: PayloadAction<any>) => {
-				const existingIds = new Set(state.users.map((user) => user.id))
-				const newUsers = payload.users.filter(
-					(user: any) => !existingIds.has(user.id),
-				)
-				;(state.users = [...state.users, ...newUsers]),
-					(state.userData.totalPages = payload.total_pages)
+				state.users = [...state.users, ...payload.users]
+				state.userData.totalPages = payload.total_pages
 				state.userData.totalUsers = payload.total_users
 				state.userData.count = payload.count
 				state.userData.page = payload.page

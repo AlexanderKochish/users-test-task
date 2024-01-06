@@ -18,10 +18,10 @@ const Users: React.FC = () => {
 		}
 		return
 	}
-
+	
 	useEffect(() => {
 		dispatch(usersAsyncThunk(page))
-	}, [page])
+	},[page])
 
 	return (
 		<div className='flex flex-col space-y-4 py-10'>
