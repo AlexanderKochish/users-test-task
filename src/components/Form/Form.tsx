@@ -148,7 +148,7 @@ const Form: React.FC = () => {
 				/>
 				<label
 					htmlFor='photo'
-					className='border cursor-pointer h-[54px] flex items-center rounded-sm'
+					className='border cursor-pointer h-[54px] flex items-center rounded-sm overflow-hidden'
 				>
 					<span className='border-r inline-grid place-items-center h-full px-5'>
 						Upload
