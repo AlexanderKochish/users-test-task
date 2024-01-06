@@ -9,7 +9,6 @@ import ErrorPage from '../UI/ErrorPage'
 
 const Users: React.FC = () => {
 	const { userData, users, status } = useAppSelector((state) => state.users)
-	const { createUser } = useAppSelector((state) => state.signup)
 	const { page, totalPages } = userData
 	const dispatch = useAppDispatch()
 
@@ -22,7 +21,7 @@ const Users: React.FC = () => {
 	
 	useEffect(() => {
 		dispatch(usersAsyncThunk(page))
-	},[page, createUser])
+	},[page])
 
 	return (
 		<div className='flex flex-col space-y-4 py-10'>
