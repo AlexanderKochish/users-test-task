@@ -1,10 +1,7 @@
-import { Suspense, lazy } from 'react'
 import Form from '../components/Form/Form'
 import Header from '../components/Header/Header'
+import Title from '../components/Title/Title'
 import Users from '../components/Users/Users'
-import Preloader from '../components/UI/Preloader.js'
-
-const Title = lazy(() => delayForDemo(import('../components/Title/Title')))
 
 const UsersPage: React.FC = () => {
 	return (
@@ -13,9 +10,7 @@ const UsersPage: React.FC = () => {
 				<Header />
 			</div>
 			<main className='bg-[--bg-color] min-h-screen min-w-full'>
-				<Suspense fallback={<Preloader />}>
-					<Title />
-				</Suspense>
+				<Title />
 				<section
 					id='users-section'
 					className='max-w-[1200px]  min-h-screen mx-auto px-[15px]'
@@ -34,9 +29,3 @@ const UsersPage: React.FC = () => {
 }
 
 export default UsersPage
-
-function delayForDemo(promise: Promise<any>) {
-	return new Promise((resolve) => {
-		setTimeout(resolve, 2000)
-	}).then(() => promise)
-}

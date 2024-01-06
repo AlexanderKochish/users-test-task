@@ -19,7 +19,7 @@ const PositionRadio: React.FC<ChildProps> = ({ register }) => {
 
 	return (
 		<div className='space-y-2'>
-			<h4>Select your position</h4>
+			<h3>Select your position</h3>
 			{positions.map((position) => (
 				<div key={position.id} className='flex items-center space-x-3'>
 					<input
