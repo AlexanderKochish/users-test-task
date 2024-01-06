@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		font-family: 'Nunito';
+		line-height: 1.5;
+		font-weight: 400;
+		--bg-color: #f8f8f8;
+		--btn-color: #f4e041;
+		--btn-hover: #ffed62;
+		--white-color: #ffffff;
+		--blue-color: #00bdd3;
+		--disabled-color: rgb(179, 179, 179);
+		--text-color: #202020;
+		--red-color: rgb(180, 0, 0);
+		font-synthesis: none;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+* {
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+.title {
+	background-image: url('./images/Rectangle-29.webp');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 650px;
+	padding: 0 15px;
+}
+
+#error-page {
+	background-image: url('../src/images/oops-404-error-with-broken-robot-concept-illustration_114360-5529.webp');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+	height: 100vh;
+}
