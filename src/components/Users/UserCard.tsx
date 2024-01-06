@@ -7,7 +7,7 @@ const UserCard: React.FC<IUserCard> = ({ user }) => {
 			? placeholder
 			: user.photo
 	return (
-		<li className='w-[280px] min-h-[254px] lg:w-[320px] lg:min-h-[204px] xl:w-[350px] xl:min-h-[254px] bg-[--white-color] grid place-items-center rounded-md p-5'>
+		<li className='w-[280px] min-h-[254px] md:w-[320px] md:min-h-[204px] xl:w-[350px] xl:min-h-[254px] bg-[--white-color] grid place-items-center rounded-md p-5'>
 			<div>
 				<img
 					className='w-[70px] h-[70px] rounded-full'
