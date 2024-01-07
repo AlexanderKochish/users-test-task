@@ -1,28 +1,39 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks'
-import { setPage, usersAsyncThunk } from '../../store/reducers/users.slice'
+import { getUsersAsyncThunk, setPage, usersAsyncThunk } from '../../store/reducers/users.slice'
 import UserCard from './UserCard'
 import Button from '../UI/Button'
 import Preloader from '../UI/Preloader'
 import { IUser } from '../../interfaces/interfaces'
 import ErrorPage from '../UI/ErrorPage'
+import { setSuccess } from '../../store/reducers/sign-up.slice'
 
 const Users: React.FC = () => {
 	const { userData, users, status } = useAppSelector((state) => state.users)
-	const { success } = useAppSelector((state) => state.signup.createUser)
 	const { page, totalPages } = userData
+	const { success } = useAppSelector((state) => state.signup.createUser)
 	const dispatch = useAppDispatch()
 
 	const pagination = () => {
 		if (page < totalPages) {
-			dispatch(setPage(page + 1))
+			dispatch(setSuccess(false))
+			dispatch(setPage(page + 1))	
 		}
 		return
 	}
+
+	useEffect(() => {
+		if(success){
+		 	dispatch(getUsersAsyncThunk())
+		}
+	},[])
 	
 	useEffect(() => {
-		dispatch(usersAsyncThunk(page))
-	},[page, success])
+		if (!success) {
+			dispatch(usersAsyncThunk(page));
+		}
+		
+	},[page, dispatch])
 
 	return (
 		<div className='flex flex-col space-y-4 py-10'>
@@ -30,6 +41,7 @@ const Users: React.FC = () => {
 				Working with GET request
 			</h2>
 			<View users={users} status={status} />
+			
 			<div className='text-center pt-6'>
 				<Button
 					text='Show more'

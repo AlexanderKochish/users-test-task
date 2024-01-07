@@ -21,6 +21,22 @@ const initialState: IUserState = {
 		page: 1,
 	},
 }
+export const getUsersAsyncThunk = createAsyncThunk<
+	any,
+	undefined,
+	{ state: RootState }
+>('users/getUsersAsyncThunk', async (_, thunkApi): Promise<any> => {
+	const { count } = thunkApi.getState().users.userData
+	try {
+		const { data } = await axios.get(
+			`${import.meta.env.VITE_BASE_URL}users?count=${count}`
+		)
+		return data
+	} catch (error: any) {
+		throw thunkApi.rejectWithValue(error)
+	}
+})
+
 
 export const usersAsyncThunk = createAsyncThunk<
 	any,
@@ -49,6 +65,12 @@ const usersSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		builder.addCase(getUsersAsyncThunk.fulfilled, (state, action) => {
+			state.status = 'successed'
+			state.users = action.payload.users
+			state.userData.totalPages = action.payload.total_pages
+			state.userData.page = action.payload.page
+		})
 		builder.addCase(usersAsyncThunk.pending, (state) => {
 			state.status = 'loading'
 			state.error = null
@@ -59,9 +81,8 @@ const usersSlice = createSlice({
 				state.status = 'successed'
 				state.users = [...state.users,...payload.users]
 				state.userData.totalPages = payload.total_pages
-				state.userData.totalUsers = payload.total_users
-				state.userData.count = payload.count
 				state.userData.page = payload.page
+				state.userData.totalUsers = payload.total_users
 			},
 		)
 		builder.addCase(

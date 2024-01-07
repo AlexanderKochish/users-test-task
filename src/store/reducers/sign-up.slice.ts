@@ -73,6 +73,9 @@ const signUpSlice = createSlice({
 		setPositionId(state, action) {
 			state.positionId = action.payload
 		},
+		setSuccess(state, action){
+			state.createUser.success = action.payload
+		}
 	},
 	extraReducers: (builder) => {
 		// GET NEW TOKEN
@@ -115,5 +118,5 @@ const signUpSlice = createSlice({
 		)
 	},
 })
-export const { setPositionId } = signUpSlice.actions
+export const { setPositionId, setSuccess } = signUpSlice.actions
 export default signUpSlice.reducer
