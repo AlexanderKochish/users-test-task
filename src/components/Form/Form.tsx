@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PositionRadio from './PositionRadio'
-import { useAppDispatch } from '../../store/hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks'
 import {
 	getTokenAsyncThunk,
 	signUpAsyncThunk,
@@ -9,9 +9,11 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { IRegisterForm } from '../../interfaces/interfaces'
 import Button from '../UI/Button'
 import { useNavigate } from 'react-router-dom'
+import Preloader from '../UI/Preloader'
 
 const Form: React.FC = () => {
 	const [fileName, setFileName] = useState<string>('')
+	const { status } = useAppSelector((state) => state.signup)
 	const navigate = useNavigate()
 	const {
 		register,
@@ -34,7 +36,7 @@ const Form: React.FC = () => {
 	return (
 		<div className='text-center w-full h-screen grid place-items-center'>
 			<h2 className='text-2xl sm:text-4xl'>Working with POST request</h2>
-			<form
+			{status === 'loading'? <Preloader/> : <form
 				onSubmit={handleSubmit(createUser)}
 				className='flex text-start flex-col pb-5 w-[280px] sm:w-[300px] md:w-[380px] min-h-[567px] justify-between rounded-sm'
 			>
@@ -160,7 +162,7 @@ const Form: React.FC = () => {
 				</label>
 				<span className='text-redColor -mb-2'>{errors.photo?.message}</span>
 				<Button disabled={!isValid} text={'Sign Up'} />
-			</form>
+			</form>}
 		</div>
 	)
 }
