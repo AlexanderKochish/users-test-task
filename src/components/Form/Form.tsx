@@ -36,7 +36,12 @@ const Form: React.FC = () => {
 	return (
 		<div className='text-center w-full h-screen grid place-items-center'>
 			<h2 className='text-2xl sm:text-4xl'>Working with POST request</h2>
-			{status === 'loading'? <Preloader/> : <form
+			{status === 'loading'? 
+			<div className='min-h-[567px] grid place-items-center'>
+				<Preloader/>
+			</div> 
+			: 
+			<form
 				onSubmit={handleSubmit(createUser)}
 				className='flex text-start flex-col pb-5 w-[280px] sm:w-[300px] md:w-[380px] min-h-[567px] justify-between rounded-sm'
 			>

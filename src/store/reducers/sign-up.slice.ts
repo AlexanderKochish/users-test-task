@@ -60,6 +60,9 @@ export const signUpAsyncThunk = createAsyncThunk<
 				},
 			},
 		)
+		if(data.success){
+			thunkApi.dispatch(removePositionId(0))
+		}
 		return data
 	} catch (error) {
 		throw thunkApi.rejectWithValue(error)
@@ -75,6 +78,9 @@ const signUpSlice = createSlice({
 		},
 		setSuccess(state, action){
 			state.createUser.success = action.payload
+		},
+		removePositionId(state, action){
+			state.positionId = action.payload
 		}
 	},
 	extraReducers: (builder) => {
@@ -118,5 +124,5 @@ const signUpSlice = createSlice({
 		)
 	},
 })
-export const { setPositionId, setSuccess } = signUpSlice.actions
+export const { setPositionId, setSuccess, removePositionId } = signUpSlice.actions
 export default signUpSlice.reducer
